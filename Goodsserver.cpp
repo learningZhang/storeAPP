@@ -36,7 +36,6 @@ void* ReadThread(void *arg)
             close(clientfd);
             return NULL;
         }
-
         cout<<"recvbuf:"<<recvbuf<<endl;
              
         if(reader.parse(recvbuf, root))
@@ -48,7 +47,7 @@ void* ReadThread(void *arg)
                 case EN_MSG_LOGIN:
                 {
                     response["msgtype"] = EN_MSG_ACK;
-			char name1[20];
+					char name1[20];
                     const char * name = root["name"].asString().c_str();strcpy(name1,name);char pwd1[20];
                     const char * pwd = root["pwd"].asString().c_str();strcpy(pwd1, pwd);
                     
@@ -72,16 +71,16 @@ void* ReadThread(void *arg)
                 case EN_MSG_REGISTER:
 	            {
 
-		            	cout<<"one client is register"<<endl;
-				char name1[20];char passwd1[20];char call1[20];
+	            	cout<<"one client is register"<<endl;
+					char name1[20];char passwd1[20];char call1[20];
 			        const char* name = root["name"].asString().c_str();
-				strcpy(name1, name);
-                    		const char *passwd = root["pwd"].asString().c_str();
-				strcpy(passwd1, passwd);
-                    		const char * call = root["phone"].asString().c_str();
-				strcpy(call1, call);
+					strcpy(name1, name);
+                   	const char *passwd = root["pwd"].asString().c_str();
+					strcpy(passwd1, passwd);
+                   	const char * call = root["phone"].asString().c_str();
+					strcpy(call1, call);
 		        	response["msgtype"] = EN_MSG_ACK;
-		         cout<<name<<passwd<<call<<name1<<passwd1<call1;
+		         	cout<<name<<passwd<<call<<name1<<passwd1<call1;
                     if(db.insertIntoUser(name1, passwd1, call1) == false)
                     {
 		                response["ackcode"] = "error"; 
@@ -108,21 +107,21 @@ void* ReadThread(void *arg)
 	  	case SALEITEM: //数据库增加物品
 	            {
 				
-                             response["msgtype"] = SALEITEM;
-			     char buytime1[20];
-		              const char *buytime = root["buytime"].asString().c_str();
-			    strcpy(buytime1, buytime);char degree1[20];
-		             const char *degree = root["degree"].asString().c_str();
- 				strcpy(degree1, degree); char myaddre1[20];
-		             const char *myaddre = root["myaddre"].asString().c_str();
- 				strcpy(myaddre1, myaddre); char goodsaddre1[30];
+                 	response["msgtype"] = SALEITEM;
+			     	char buytime1[20];
+		       		const char *buytime = root["buytime"].asString().c_str();
+				    strcpy(buytime1, buytime);char degree1[20];
+		            const char *degree = root["degree"].asString().c_str();
+ 					strcpy(degree1, degree); char myaddre1[20];
+		            const char *myaddre = root["myaddre"].asString().c_str();
+ 					strcpy(myaddre1, myaddre); char goodsaddre1[30];
 		            const char *goodsaddre = root["goodsaddre"].asString().c_str();
-				strcpy(goodsaddre1, goodsaddre); char name1[20];
-        		            const char *moneychar = root["moneychar"].asString().c_str();
-		             const char *name = root["name"].asString().c_str();strcpy(name1, name);
+					strcpy(goodsaddre1, goodsaddre); char name1[20];
+        		    const char *moneychar = root["moneychar"].asString().c_str();
+		            const char *name = root["name"].asString().c_str();strcpy(name1, name);
 	         		int money = atoi(root["moneychar"].asString().c_str());
 
-		             const char *id = root["id"].asString().c_str();
+		            const char *id = root["id"].asString().c_str();
 										
 					if (db.insertIntoMessage(id,name1,buytime1,degree1,myaddre1,goodsaddre1,money) == true)
 					{
@@ -177,36 +176,7 @@ void* ReadThread(void *arg)
                     } 
 	            }
 	            break;
-	            /*
-				case ADDITEM: 
-	            {
-		            char *id = root["ID"].asString().c_str();
-		            char *meaasge = (char *)malloc(sizeof(char)*MESG_MAX);
-					bool tag = findMessageByID(id, message, length);
-					if (tag == true)
-					{
-						root["ackcode"] = "ok";
-						response["id"] = strtok_r(message, "-");
-						response["name"] = strtok_r(NULL, "-");
-						response["buytime"] = strtok_r(NULL, "-");
-						response["degree"] = strtok_r(NULL, "-");
-						response["myddre"] = strtok_r(NULL, "-");
-						response["goodsaddre"] = strtok_r(NULL, "-");
-						response["money"] = strtok_r(NULL, "-");					
-					}
-					else
-					{
-						response["error"];
-					}
-					free(message);
-					if(-1 == send(clientfd,response.toStyledString().c_str(),strlen(response.toStyledString().c_str())+1,0))
-                    {
-	                    cout<<"server send register message error"<<endl;
-                    } 
-	            }
-	            break;
-	          */
-                case QUERYBYID: //通过id查询信息
+	            case QUERYBYID: //通过id查询信息
 	            {
 		            response["msgtype"] = QUERYBYID;
 		           	const char *id = root["id"].asString().c_str();

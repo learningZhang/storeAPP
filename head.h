@@ -19,5 +19,6 @@
 #include <json/json.h>
 #include <errno.h>
 using namespace std;
+
 #include "mysqlGoods.h"
 #define MESG_MAX  1024
