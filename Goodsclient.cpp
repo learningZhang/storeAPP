@@ -1,4 +1,5 @@
 #include "client.h"
+
 int main(int argc, char **argv)
 {
     if(argc < 2)
@@ -99,7 +100,6 @@ int main(int argc, char **argv)
         		}
         }
     }
-    
     cout<<"welcome to beijing!"<<endl;
     return 0;
 }

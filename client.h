@@ -25,12 +25,13 @@ typedef struct _node
 	char moneychar[10];
 	_node(){memset(0,sizeof(_node), 0);}	
 }Node;
+
 char name[20];
 char pwd[20];
 char phone[20];
 Node st;
-bool operate(int fd);
 
+bool operate(int fd);
 bool doLogin(int fd)
 {
     cout<<"name: ";
@@ -44,13 +45,12 @@ bool doLogin(int fd)
     root["pwd"] = pwd;
 
     int size = send(fd, root.toStyledString().c_str(),
-        strlen(root.toStyledString().c_str())+1, 0);
+ 				       strlen(root.toStyledString().c_str())+1, 0);
     if(size < 0)
     {
         cout<<"send login msg fail!"<<endl;
         exit(0);
     }
-    
     //接收server返回的登录消息
     char recvbuf[1024]={0};
     size = recv(fd, recvbuf, 1024, 0);
@@ -106,7 +106,6 @@ void doregister(int fd)
         cout<<"send register msg fail!"<<endl;
         exit(0);
     }
-
 	//接受server返回的注册消息
 	
     char recvbuf[1024]={0};
@@ -143,6 +142,7 @@ bool offline(int fd)
 	st.msgty = EN_MSG_OFFLINE;
 	operate(fd);
 }
+
 Node queryByName(int fd)
 {	
 	cout<<"name:";
