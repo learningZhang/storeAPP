@@ -10,7 +10,6 @@ int main()
 	char *myaddre = "sust";
 	char *goodsaddre = "china";
 	int money=10;
-
 	
 		///²åÈëÉÌÆ·
 	//bool tag = db.insertIntoMessage(id,name,buytime,degree,myaddre,goodsaddre,money);

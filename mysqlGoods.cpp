@@ -37,7 +37,6 @@ bool CMysql::insertIntoUser(const char *name, const char *passwd, const char *ca
 	}
 	return false;
 }
-
 //goods(id char(20), name char(20), buytime char(20), degree char(10),myaddre char(30), goodsaddre, money int);
 ///插入商品
 //_

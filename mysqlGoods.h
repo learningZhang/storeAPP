@@ -1,5 +1,3 @@
-//#ifndef _NIHAO_  
-//define _NIHAO_ 1
 
 #include <iostream>
 using namespace std;
